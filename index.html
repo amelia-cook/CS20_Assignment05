@@ -47,13 +47,7 @@
             <h3 id = "winnings">test</h3>
         </div>
         <script language = "javascript">
-            pick = [];
-            while (pick.length < 5) {
-                const r = Math.floor(Math.random() * 48) + 1;
-                if (pick.indexOf(r) === -1) {
-                    pick.push(r);
-                }
-            }
+            pick = get_pick();
             
             lucky = Math.floor(Math.random() * 18) + 1;
             
@@ -78,6 +72,16 @@
             
             document.getElementById("winnings").innerHTML = "$" + get_winnings(winnings, lucky_win);
             
+            function get_pick() {
+                pick = [];
+                while (pick.length < 5) {
+                    const r = Math.floor(Math.random() * 48) + 1;
+                    if (pick.indexOf(r) === -1) {
+                        pick.push(r);
+                    }
+                }
+                return pick;
+            }
             function to_string(pick, lucky) {
                 y = "";
                 for (i = 0; i < pick.length; i++) {
@@ -122,6 +126,8 @@
                         if(lucky_win) return "7,000 a WEEK for LIFE";
                         return "25,000 a YEAR for LIFE";
                         break;
+                    default: 
+                        return 0;
                 }
             }
         </script>
